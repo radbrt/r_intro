@@ -11,9 +11,18 @@ ytelser <- clean_names(ytelser)
 # Sjekker de nye kolonnenavnene
 <...>
 
+# Vi har lyst på en egen kolonne med kommunenummer, og en kolonne med fylkesnummer
+ytelser <- ytelser %>% 
+  mutate(kommnr = substr(kommune_nr_navn, 1, 4),
+         fylkenr = substr(kommune_nr_navn, 1, 2))
 
+# Oppsummere ytelser pr år
+ytelser %>% 
+  group_by(<...>) %>% 
+  summarize(belop_mrd = <...>) 
   
   
+# Hmmm... klarer vi å lage et plot av dette?
 ytelser %>% 
   group_by(ar) %>% 
   summarize(belop_mrd = sum(utbetalt_mill_kr)/1000) %>% 
